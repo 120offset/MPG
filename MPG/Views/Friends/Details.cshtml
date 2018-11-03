@@ -1,0 +1,66 @@
+﻿@model MPG.Models.Friend
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Friend</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MilesDriven)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MilesDriven)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GallonsFilled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GallonsFilled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FillUpDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FillUpDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MPG.Models.Friend>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Index", "Friends", FormMethod.Get))
+    {
+    <p> Enter a Search @Html.TextBox("searchString")
+        <input type="submit" value="Search" /></p>
+    }
+
+
+   <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CarModel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MilesDriven)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GallonsFilled)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FillUpDate)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CarModel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MilesDriven)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GallonsFilled)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FillUpDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
