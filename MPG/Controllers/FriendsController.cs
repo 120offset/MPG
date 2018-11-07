@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MPG.Models;
+ 
 
 
 
@@ -17,34 +18,45 @@ namespace MPG.Controllers
         private MPGEntities db = new MPGEntities();
 
         // GET: Friends
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string sortOrder, string searchString)
         {
+            ViewBag.FillUpDate = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.LastName = String.IsNullOrEmpty(sortOrder) ? "last_desc" : "";
+            ViewBag.CarModel = String.IsNullOrEmpty(sortOrder) ? "car_desc" : "";
             //string searchString = id;
-            var friends = from f in db.Friends
-                          select f;
+            var friends = from s in db.Friends
+                          select s;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                friends = friends.Where(s => s.FirstName.Contains(searchString) || s.LastName.Contains(searchString) || s.CarModel.Contains(searchString));
+                friends = friends.Where(s => s.FirstName.Contains(searchString)
+                || s.LastName.Contains(searchString)
+                || s.CarModel.Contains(searchString));
+                //|| SqlFunctions.(s.FillUpDate).Contains(searchString));
 
             }
-            //else if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    friends = friends.Where(s => s.LastName.Contains(searchString));
-            //}
-            //else if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    friends = friends.Where(s => s.CarModel.Contains(searchString));
-            //}
-            //else if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    friends = friends.Where(s => Convert.ToString(s.FillUpDate).Contains(searchString));
-            //}
-            //return View(db.Friends.ToList()
-            //        .OrderBy(x => x.FillUpDate)
-            //        .ThenBy(x => x.LastName)
-            //        .ThenBy(x => x.CarModel));
-            return View(friends);
+
+            switch(sortOrder)
+            {
+                case "Date":
+                    friends = friends.OrderBy(s => s.FillUpDate);
+                    break;
+                case "date_desc":
+                    friends = friends.OrderByDescending(s => s.FillUpDate);
+                    break;
+                case "last_desc":
+                    friends = friends.OrderByDescending(s => s.LastName);
+                    break;
+                case "car_desc":
+                    friends = friends.OrderByDescending(s => s.CarModel);
+                    break;
+                default:
+                    friends = friends.OrderBy(s => s.LastName);
+                    break;
+            }
+          
+       
+            return View(friends.ToList());
         }
 
 

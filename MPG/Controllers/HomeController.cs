@@ -15,14 +15,14 @@ namespace MPG.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "If you ever start taking things too seriously, just remember that we are talking monkeys on an organic spaceship flying through the universe - Joe Rogan ";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Contact me Anytime!";
+            ViewBag.Message = "Contact me Anytime";
 
             return View();
         }

@@ -4,18 +4,32 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h1>Track Your Tank Miles</h1>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-    @using (Html.BeginForm("Index", "Friends", FormMethod.Get))
-    {
-    <p> Enter a Search @Html.TextBox("searchString")
-        <input type="submit" value="Search" /></p>
+
+    <div>
+        <h3>Enter your information</h3>
+        <p>
+            This table will keep track of the miles <br /> 
+            since your last visit to the pump.<br />
+            <br />
+            Search by Name and Car Model
+        </p>
+        
+    </div>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+        @using (Html.BeginForm("Index", "Friends", FormMethod.Get))
+        {
+        <p>
+            Enter a Search @Html.TextBox("searchString")
+            <input type="submit" value="Search" />
+        </p>
     }
 
 
-   <table class="table">
+        <table class="table">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.FirstName)

@@ -21,9 +21,5 @@ namespace MPG.Models
         public int MilesDriven { get; set; }
         public int GallonsFilled { get; set; }
         public System.DateTime FillUpDate { get; set; }
-
     }
-
-
-
 }
